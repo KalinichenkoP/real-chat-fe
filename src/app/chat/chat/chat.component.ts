@@ -50,12 +50,17 @@ export class ChatComponent implements OnInit {
       filter((newMessage: Message) => this.messages.filter((message: Message) => message.uuid === newMessage.uuid).length === 0),
       tap((message: Message) => message.status = MessageStatus.Send),
       tap((message: Message) => this.messages.push(message)),
+      tap((message: Message) => this.pushNotification(message)),
       tap((message: Message) => this.messageService.sendMessageReadInfo(message.uuid, this.room.id.toString()).subscribe()))
       .subscribe();
 
     this.socketService.onMessageUpdate().pipe(
       tap((messageUUID: String) => this.messages.filter((message: Message) => message.uuid === messageUUID)[0].readAmount++))
       .subscribe();
+  }
+
+  pushNotification(message: Message) {
+    console.log(`new Message ${message.text}`);
   }
 
   async sendMessage() {
@@ -77,16 +82,16 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  getUser(id: number): User {
-    return this.users.filter((user: User) => user.id === id)[0];
-  }
+  // getUser(id: number): User {
+  //   return this.users.filter((user: User) => user.id === id)[0];
+  // }
 
-  async checkAndPushUser(id: number): Promise<any> {
-    let user: User = await this.users.filter((user: User) => user.id === id)[0];
-    if (!user) {
-      this.getUserFromDB(id);
-    }
-  }
+  // async checkAndPushUser(id: number): Promise<any> {
+  //   let user: User = await this.users.filter((user: User) => user.id === id)[0];
+  //   if (!user) {
+  //     this.getUserFromDB(id);
+  //   }
+  // }
 
   //
   // async checkAndPushMessage(newMessage: Message): Promise<any> {
