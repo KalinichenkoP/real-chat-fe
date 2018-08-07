@@ -3,7 +3,6 @@ import {RoomService} from '../../services/room.service';
 import {NotifierService} from '../../notifier/notifier.service';
 import {Room} from '../../models/room';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {required} from 'joi';
 
 @Component({
   selector: 'app-chat-create',
