@@ -1,5 +1,6 @@
 import {NotificationsService} from 'angular2-notifications';
 import { Injectable } from '@angular/core';
+import {Message} from "../models/message";
 
 /**
  * Service that allows to show notification toasts.
@@ -17,8 +18,25 @@ export class NotifierService {
     /**
      * Show notification about action that succeeded.
      */
-    success (message: string) {
+    message (message: Message, icon: string) {
       console.log(message);
+        Notification.requestPermission()
+          .then(permission =>  {
+            console.log(permission);
+            if (permission === 'granted') {
+              console.log(icon);
+              new Notification(message.text, {icon: icon});
+          } else {
+              this.notificationService.info("", message, {
+                timeOut: 3000,
+                showProgressBar: false
+              });
+            }
+          });
+    }    /**
+     * Show notification about action that succeeded.
+     */
+    success (message: string) {
         this.notificationService.success("", message, {
             timeOut: 3000,
             showProgressBar: false

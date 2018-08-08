@@ -10,6 +10,7 @@ import {Room} from '../../models/room';
 import {RoomService} from '../../services/room.service';
 import {MessageStatus} from '../../models/message.status';
 import {filter, tap} from 'rxjs/operators';
+import {NotifierService} from "../../notifier/notifier.service";
 
 @Component({
   selector: 'app-chat',
@@ -27,7 +28,8 @@ export class ChatComponent implements OnInit {
               private socketService: SocketService,
               private userService: UserService,
               private roomService: RoomService,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private notifyService: NotifierService) {
   }
 
   ngOnInit() {
@@ -60,11 +62,14 @@ export class ChatComponent implements OnInit {
   }
 
   pushNotification(message: Message) {
-    console.log(`new Message ${message.text}`);
+    console.log(message.senderId);
+    console.log(this.getUserById(message.senderId));
+    const icon: string = this.getUserById(message.senderId).image;
+    this.notifyService.message(message, icon);
   }
 
   async sendMessage() {
-    const newMessage: Message = await new Message(this.text, this.room.id);
+    const newMessage: Message = await new Message(this.text, this.room.id, 1);
     this.messages.push(newMessage);
     this.messageService.sendMessage(newMessage.toServerDto()).subscribe();
     this.text= '';
@@ -74,6 +79,12 @@ export class ChatComponent implements OnInit {
     this.userService.getUserById(id).subscribe((user: User) => {
       this.users.push(user);
     });
+  }
+  getUserById(id: number): User {
+    console.log(this.users);
+    const users = this.users.filter((user: User) => user.id === id);
+    console.log(users);
+    return this.users.filter(user => user.id === id)[0];
   }
 
   getUsersByRoom(roomId: number) {

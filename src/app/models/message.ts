@@ -11,13 +11,13 @@ export class Message {
   roomId: number;
   createdAt: Date;
 
-  constructor(text: string, roomId: number) {
+  constructor(text: string, roomId: number, senderId: number) {
     this.uuid = uuidFactory.v4();
     this.text = text;
     this.status = MessageStatus.Pending;
     this.readAmount = 0;
     this.roomId = roomId;
-    this.senderId = 1;
+    this.senderId = senderId;
     this.createdAt = new Date();
   }
 
