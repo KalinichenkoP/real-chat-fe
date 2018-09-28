@@ -11,8 +11,7 @@ export class ChatListComponent implements OnInit {
 
   protected rooms: Room[] = [];
 
-  constructor(private roomService: RoomService) {
-  }
+  constructor(private roomService: RoomService) {}
 
   async ngOnInit() {
     this.roomService.getRoomList().subscribe(response => this.rooms = response.data);
