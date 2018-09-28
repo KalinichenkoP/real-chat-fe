@@ -17,6 +17,7 @@
     "@angular/common": "^6.0.7",
     "@angular/compiler": "^6.0.7",
     "@angular/core": "^6.0.7",
+    "@angular/cli": "~6.0.8",
     "@angular/forms": "^6.0.7",
     "@angular/http": "^6.0.7",
     "mydatepicker": "^2.6.3",
