@@ -27,4 +27,5 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatButtonModule,
   ]
 })
+
 export class ChatModule { }
