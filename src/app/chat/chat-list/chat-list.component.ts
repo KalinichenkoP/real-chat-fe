@@ -9,7 +9,7 @@ import {Room} from '../../models/room';
 })
 export class ChatListComponent implements OnInit {
 
-  protected rooms: Room[] = [];
+  rooms: Room[] = [];
 
   constructor(private roomService: RoomService) {}
 

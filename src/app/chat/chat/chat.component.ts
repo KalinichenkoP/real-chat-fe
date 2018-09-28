@@ -19,8 +19,8 @@ import {NotifierService} from "../../notifier/notifier.service";
 })
 export class ChatComponent implements OnInit {
 
-  protected room: Room;
-  protected text: string = '';
+  room: Room;
+  text: string = '';
   messages: Message[] = [];
   users: User[] = [];
 

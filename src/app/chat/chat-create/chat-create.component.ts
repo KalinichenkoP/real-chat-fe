@@ -11,9 +11,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ChatCreateComponent implements OnInit {
 
-  protected roomName: string;
-  protected createRoomForm: FormGroup;
-  protected rooms: Room[] = [];
+  roomName: string;
+  createRoomForm: FormGroup;
+  rooms: Room[] = [];
   constructor(private roomService: RoomService,
               private notifyService: NotifierService) { }
 

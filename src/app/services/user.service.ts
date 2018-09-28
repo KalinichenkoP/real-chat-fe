@@ -7,7 +7,7 @@ import {User} from '../models/user';
 import {BehaviorSubject} from 'rxjs';
 import {Params} from '@angular/router';
 import {ApiListResponse} from '../../../classes/ApiListResponce';
-import {Room} from '../models/room';
+// import {Room} from '../models/room';
 
 interface UserModel {
   user: User;
