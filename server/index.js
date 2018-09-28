@@ -8,6 +8,6 @@ app.get('/', function (req, res) {
 
 app.use(express.static(__dirname + '/../dist/real-chat-app'));
 
-app.listen(5000, function () {
-  console.log('Example app listening on port 5000!');
+app.listen(443, function () {
+  console.log('Example app listening on port 443!');
 });
